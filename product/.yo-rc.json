@@ -1,0 +1,23 @@
+{
+  "generator-jhipster": {
+    "applicationIndex": 1,
+    "applicationType": "microservice",
+    "authenticationType": "oauth2",
+    "baseName": "product",
+    "buildTool": "gradle",
+    "cacheProvider": "hazelcast",
+    "entities": ["Product", "ProductCategory", "ProductOrder", "OrderItem"],
+    "jhipsterVersion": "8.4.0",
+    "jwtSecretKey": "Y2UzYzUzMmYyYWJmYmUwM2QyNjExYjQwZDE3NjRiNjhlNmZkYzNlNjQyZGJjNGE1NjVhZjYzNDRlYWE3ZDY0YzU5NWNjNjY2Y2Q0YzQxMTg1MzQ0OGYxMDU3ZDc4OGU3NjQwZTI2YzJkMDA4MjA3ZDQ5MGYxMTY1OWY3YTYwMzU=",
+    "languages": ["en"],
+    "lastLiquibaseTimestamp": 1720484484000,
+    "nativeLanguage": "en",
+    "packageFolder": "com/okta/demo/product",
+    "packageName": "com.okta.demo.product",
+    "prodDatabaseType": "postgresql",
+    "serverPort": "8081",
+    "serviceDiscoveryType": "consul",
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}
