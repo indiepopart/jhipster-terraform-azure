@@ -29,22 +29,6 @@ resource "azurerm_subnet" "azure_firewall_subnet" {
   service_endpoints    = ["Microsoft.KeyVault"]
 }
 
-resource "azurerm_subnet" "gateway_subnet" {
-  name                 = "GatewaySubnet"
-  resource_group_name  = azurerm_resource_group.rg_hub_networks.name
-  virtual_network_name = azurerm_virtual_network.hub_vnet.name
-  address_prefixes       = [var.on_prem_gateway_addess_space]
-  service_endpoints    = ["Microsoft.KeyVault"]
-}
-
-resource "azurerm_subnet" "bastion_subnet" {
-  name                 = "AzureBastionSubnet"
-  resource_group_name  = azurerm_resource_group.rg_hub_networks.name
-  virtual_network_name = azurerm_virtual_network.hub_vnet.name
-  address_prefixes       = [var.bastion_address_space]
-  service_endpoints    = ["Microsoft.KeyVault"]
-}
-
 resource "azurerm_public_ip" "hub_pip" {
   name                = local.pip_name
   location            = azurerm_resource_group.rg_hub_networks.location

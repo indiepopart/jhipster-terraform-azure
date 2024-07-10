@@ -33,9 +33,7 @@ module "spoke_network" {
   hub_rg_name                = module.hub_network.hub_rg_name
 
   depends_on = [
-    module.hub_network.hub_pip,
-    module.hub_network.hub_vnet_id,
-    module.acr.acr_id,
+    module.hub_network
   ]
 }
 
@@ -51,13 +49,8 @@ module "cluster" {
   spoke_pip_id            = module.spoke_network.spoke_pip_id
 
   depends_on = [
-    module.spoke_network.cluster_nodes_route_table_association_id,
-    module.spoke_network.spoke_to_hub_peer_id,
-    module.spoke_network.hub_to_spoke_peer_id,
-    module.spoke_network.spoke_pip_id,
-    module.spoke_network.application_gateway_id,
-    module.hub_network.fw_net_rule_org_wide_id,
-    module.hub_network.fw_net_rule_aks_global_id,
-    module.hub_network.fw_app_rule_aks_global_id,
+    module.spoke_network,
+    module.hub_network,
+    module.acr
   ]
 }

@@ -58,14 +58,6 @@ resource "azurerm_subnet_route_table_association" "cluster_nodes_route_table" {
   route_table_id = azurerm_route_table.spoke_route_table.id
 }
 
-resource "azurerm_subnet" "ingress_services_subnet" {
-  name                 = "snet-ingress-services"
-  resource_group_name  = azurerm_resource_group.rg_spoke_networks.name
-  virtual_network_name = azurerm_virtual_network.spoke_vnet.name
-  address_prefixes       = [var.ingress_services_address_space]
-
-}
-
 resource "azurerm_subnet" "application_gateways_subnet" {
   name                 = "snet-application-gateways"
   resource_group_name  = azurerm_resource_group.rg_spoke_networks.name

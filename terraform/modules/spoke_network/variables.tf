@@ -24,11 +24,6 @@ variable "cluster_nodes_address_space" {
   default = "10.240.0.0/22"
 }
 
-variable "ingress_services_address_space" {
-  description = "The address space for the ingress services."
-  default = "10.240.4.0/28"
-}
-
 variable "application_gateways_address_space" {
   description = "The address space for the application gateways."
   default = "10.240.4.16/28"
