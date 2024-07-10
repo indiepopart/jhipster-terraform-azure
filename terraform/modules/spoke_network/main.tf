@@ -2,7 +2,7 @@ locals {
   spoke_vnet_name = "vnet-${var.resource_group_location}-spoke"
   spoke_rg_name = "rg-spokes-${var.resource_group_location}"
   pip_name = "pip-${var.application_id}-00"
-  backend_address_pool_name      = "app-gwateway-beap"
+  backend_address_pool_name      = "app-gateway-beap"
   frontend_port_name             = "app-gateway-feport"
   frontend_ip_configuration_name = "app-gateway-feip"
   http_setting_name              = "app-gateway-be-htst"
