@@ -21,14 +21,22 @@ To deploy the stack to Azure Kubernetes Service (AKS), we need to create a clust
 
 ### Create a cluster
 
-Ensure you have configured your [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli). If not, run and following:
+Ensure you have configured your [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli). If not, run the following command:
 
 ```bash
 # Visit https://learn.microsoft.com/en-us/cli/azure/authenticate-azure-cli-interactively
 az login
 ```
 
-Update the `terraform/auth0.tf` file with your `your_auth0_domain_uri`.
+Edit the file `terraform/auth0.tf` and update the auth0 provider with your Auth0 domain URI:
+
+```terraform
+# terraform/auth0.tf
+provider "auth0" {
+  domain        = "https://<your-auth0-domain>"
+  debug         = false
+}
+```
 
 Now before we can run the scripts we need to create a machine to machine application in Auth0 so that Terraform can communicate with the Auth0 management API. This can be done using the Auth0 CLI. Please note that you also need to have [jq](https://jqlang.github.io/jq/) installed to run the below commands. Run the following commands to create an application after logging into the CLI with the `auth0 login` command:
 
@@ -71,7 +79,7 @@ terraform plan -out main.tfplan
 terraform apply main.tfplan
 ```
 
-The complete resources provisioning will take while. Once the AKS cluster is ready, you will see the output variables printed on the console. Get the cluter credentials with the following command:
+The complete provisioning of all resources will take while. Once the AKS cluster is ready, you will see the output variables printed on the console. Get the cluter credentials with the following command:
 
 ```bash
 az aks get-credentials --resource-group rg-spokes-westus2 --name <kubernetes_cluster_name> --admin
