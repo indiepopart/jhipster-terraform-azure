@@ -151,6 +151,14 @@ cd kubernetes
 
 Once the deployments are done, we must wait for the pods to be in **RUNNING** status.
 
+As the Azure Application Gateway requires the inbound traffic to be for the host `store.example.com`, you can test the store service by adding an entry in your _hosts_ file that maps to the gateway public IP:
+
+```shell
+terraform output spoke_pip
+```
+
+Then navigate to `http://store.example.com` and sign in at Atuh0 with the test user/password jhipster@test.com/passpass$12$12.
+
 ### Cleanup
 
 Once you are done with the tutorial, you can delete the cluster and all the resources created using Terraform by running the following commands:
