@@ -17,19 +17,3 @@ output "hub_rg_name" {
 output "hub_pip" {
   value = azurerm_public_ip.hub_pip.ip_address
 }
-
-output "fw_net_rule_org_wide_id" {
-  value = azurerm_firewall_network_rule_collection.org_wide_allow.id
-}
-
-output "fw_net_rule_aks_global_id" {
-  value = azurerm_firewall_network_rule_collection.aks_global_allow.id
-}
-
-output "fw_app_rule_aks_global_id" {
-  value = azurerm_firewall_application_rule_collection.aks_global_allow.id
-}
-
-output "azure_firewall_id" {
-  value = azurerm_firewall.azure_firewall.id
-}
