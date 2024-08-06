@@ -1,3 +1,12 @@
+resource "azurerm_ip_group" "aks_ip_group" {
+  name                = "aks_ip_group"
+  location            = azurerm_resource_group.rg_hub_networks.location
+  resource_group_name = azurerm_resource_group.rg_hub_networks.name
+
+  cidrs = [var.cluster_nodes_address_space]
+}
+
+
 resource "azurerm_firewall_network_rule_collection" "org_wide_allow" {
   name                = "org-wide-allowed"
   azure_firewall_name = azurerm_firewall.azure_firewall.name
@@ -137,6 +146,10 @@ resource "azurerm_firewall_network_rule_collection" "aks_global_allow" {
       "production.cloudflare.docker.com"
     ]
   }
+
+  depends_on = [
+    azurerm_firewall_network_rule_collection.org_wide_allow
+  ]
 }
 
 resource "azurerm_firewall_application_rule_collection" "aks_global_allow" {
@@ -340,5 +353,9 @@ resource "azurerm_firewall_application_rule_collection" "aks_global_allow" {
       type = "Https"
     }
   }
+
+  depends_on = [
+    azurerm_firewall_network_rule_collection.aks_global_allow
+  ]
 }
 

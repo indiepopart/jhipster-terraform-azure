@@ -37,7 +37,8 @@ resource "azurerm_public_ip" "hub_pip" {
   sku                 = "Standard"
   zones              = ["1", "2", "3"]
   idle_timeout_in_minutes = 4
-  ip_version = "IPv4"
-
 }
+
+
+
 
