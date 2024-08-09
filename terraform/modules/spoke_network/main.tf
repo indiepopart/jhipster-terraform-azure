@@ -58,7 +58,6 @@ resource "azurerm_subnet" "application_gateways_subnet" {
 
 }
 
-
 resource "azurerm_public_ip" "spoke_pip" {
   name                = local.pip_name
   location            = azurerm_resource_group.rg_spoke_networks.location
@@ -67,6 +66,5 @@ resource "azurerm_public_ip" "spoke_pip" {
   sku                 = "Standard"
   zones              = ["1","2", "3"]
   idle_timeout_in_minutes = 4
-  ip_version = "IPv4"
 }
 
