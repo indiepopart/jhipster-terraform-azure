@@ -6,7 +6,7 @@ resource "azurerm_ip_group" "aks_ip_group" {
   cidrs = [var.cluster_nodes_address_space]
 }
 
-
+# See https://learn.microsoft.com/en-us/azure/aks/limit-egress-traffic?tabs=aks-with-system-assigned-identities#required-ports-and-addresses-for-aks-clusters
 resource "azurerm_firewall_network_rule_collection" "org_wide_allow" {
   name                = "org-wide-allowed"
   azure_firewall_name = azurerm_firewall.azure_firewall.name
