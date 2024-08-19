@@ -3,7 +3,7 @@ output "resource_group_name" {
 }
 
 output "kube_config" {
-  value = module.cluster.kube_config
+  value     = module.cluster.kube_config
   sensitive = true
 }
 

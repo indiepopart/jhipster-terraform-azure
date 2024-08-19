@@ -36,9 +36,9 @@ resource "azurerm_application_gateway" "gateway" {
   }
 
   waf_configuration {
-    enabled = true
-    firewall_mode = "Prevention"
-    rule_set_type = "OWASP"
+    enabled          = true
+    firewall_mode    = "Prevention"
+    rule_set_type    = "OWASP"
     rule_set_version = "3.0"
   }
 
@@ -47,12 +47,12 @@ resource "azurerm_application_gateway" "gateway" {
   }
 
   backend_http_settings {
-    name                  = local.http_setting_name
-    cookie_based_affinity = "Disabled"
-    port                  = 80
-    protocol              = "Http"
+    name                                = local.http_setting_name
+    cookie_based_affinity               = "Disabled"
+    port                                = 80
+    protocol                            = "Http"
     pick_host_name_from_backend_address = true
-    request_timeout       = 60
+    request_timeout                     = 60
   }
 
   http_listener {

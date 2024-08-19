@@ -10,27 +10,27 @@ resource "azurerm_resource_group" "rg_ecommerce" {
 module "acr" {
   source = "./modules/acr"
 
-  resource_group_name = azurerm_resource_group.rg_ecommerce.name
+  resource_group_name     = azurerm_resource_group.rg_ecommerce.name
   resource_group_location = azurerm_resource_group.rg_ecommerce.location
 }
 
 module "hub_network" {
-  source = "./modules/hub_network"
-  resource_group_location = azurerm_resource_group.rg_ecommerce.location
+  source                      = "./modules/hub_network"
+  resource_group_location     = azurerm_resource_group.rg_ecommerce.location
   cluster_nodes_address_space = var.cluster_nodes_address_space
 }
 
 module "spoke_network" {
-  source = "./modules/spoke_network"
-  resource_group_location    = azurerm_resource_group.rg_ecommerce.location
-  application_id             = var.application_id
-  host_name                  = var.host_name
+  source                      = "./modules/spoke_network"
+  resource_group_location     = azurerm_resource_group.rg_ecommerce.location
+  application_id              = var.application_id
+  host_name                   = var.host_name
   cluster_nodes_address_space = var.cluster_nodes_address_space
-  hub_fw_private_ip          = module.hub_network.hub_fw_private_ip
-  hub_fw_public_ip           = module.hub_network.hub_pip
-  hub_vnet_id                = module.hub_network.hub_vnet_id
-  hub_vnet_name              = module.hub_network.hub_vnet_name
-  hub_rg_name                = module.hub_network.hub_rg_name
+  hub_fw_private_ip           = module.hub_network.hub_fw_private_ip
+  hub_fw_public_ip            = module.hub_network.hub_pip
+  hub_vnet_id                 = module.hub_network.hub_vnet_id
+  hub_vnet_name               = module.hub_network.hub_vnet_name
+  hub_rg_name                 = module.hub_network.hub_rg_name
 
   depends_on = [
     module.hub_network

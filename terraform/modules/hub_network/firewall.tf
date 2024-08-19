@@ -5,7 +5,7 @@ resource "azurerm_firewall" "azure_firewall" {
   sku_name            = "AZFW_VNet"
   sku_tier            = "Standard" # requried for network rules
   zones               = ["1", "2", "3"]
-  dns_proxy_enabled    = true # required for network rules with fqdns (tcp to docker.io)
+  dns_proxy_enabled   = true # required for network rules with fqdns (tcp to docker.io)
 
   ip_configuration {
     name                 = local.pip_name

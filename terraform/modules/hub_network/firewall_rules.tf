@@ -35,7 +35,7 @@ resource "azurerm_firewall_network_rule_collection" "org_wide_allow" {
   }
 
   rule {
-    name = "ntp"
+    name        = "ntp"
     description = "Network Time Protocol (NTP) time synchronization"
 
     source_addresses = [
@@ -137,7 +137,7 @@ resource "azurerm_firewall_network_rule_collection" "aks_global_allow" {
     ]
 
     destination_ports = [
-       "443"
+      "443"
     ]
 
     destination_fqdns = [
