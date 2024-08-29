@@ -81,6 +81,9 @@ resource "auth0_user" "test_user" {
   email_verified  = true
   # Don't set passwords like this in production! Use env variables instead.
   password        = "passpass$12$12"
+  lifecycle {
+    ignore_changes = [roles]
+  }
 }
 
 resource "auth0_user_roles" "test_user_roles" {

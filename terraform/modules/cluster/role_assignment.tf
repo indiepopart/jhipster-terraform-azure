@@ -1,8 +1,8 @@
-resource "azurerm_role_assignment" "cluster_identity_acrpull_role_assignment" {
-  scope                = var.acr_id
-  role_definition_name = "AcrPull"
-  principal_id         = azurerm_kubernetes_cluster.k8s.kubelet_identity[0].object_id
-}
+# resource "azurerm_role_assignment" "cluster_identity_acrpull_role_assignment" {
+#   scope                = var.acr_id
+#   role_definition_name = "AcrPull"
+#   principal_id         = azurerm_kubernetes_cluster.k8s.kubelet_identity[0].object_id
+# }
 
 resource "azurerm_role_assignment" "cluster_nodepool_role_assignment" {
   scope                = azurerm_kubernetes_cluster.k8s.node_resource_group_id

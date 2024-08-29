@@ -22,9 +22,9 @@ variable "node_count" {
   default     = 4
 }
 
-variable "acr_id" {
-  description = "The id of the Azure Container Registry"
-}
+# variable "acr_id" {
+#   description = "The id of the Azure Container Registry"
+# }
 
 variable "vnet_subnet_id" {
   description = "The id of the subnet"

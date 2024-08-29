@@ -166,9 +166,9 @@ resource "azurerm_firewall_application_rule_collection" "aks_global_allow" {
       azurerm_ip_group.aks_ip_group.id,
     ]
 
-    target_fqdns = [
-      "*.hcp.eastus2.azmk8s.io",
-      "*.tun.eastus2.azmk8s.io"
+    target_fqdns     = [
+      "*.hcp.${azurerm_resource_group.rg_hub_networks.location}.azmk8s.io", 
+      "*.tun.${azurerm_resource_group.rg_hub_networks.location}.azmk8s.io"
     ]
 
     protocol {

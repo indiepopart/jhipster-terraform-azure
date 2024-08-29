@@ -7,12 +7,12 @@ resource "azurerm_resource_group" "rg_ecommerce" {
   }
 }
 
-module "acr" {
-  source = "./modules/acr"
-
-  resource_group_name     = azurerm_resource_group.rg_ecommerce.name
-  resource_group_location = azurerm_resource_group.rg_ecommerce.location
-}
+# module "acr" {
+#   source = "./modules/acr"
+#
+#   resource_group_name     = azurerm_resource_group.rg_ecommerce.name
+#   resource_group_location = azurerm_resource_group.rg_ecommerce.location
+# }
 
 module "hub_network" {
   source                      = "./modules/hub_network"
@@ -43,7 +43,7 @@ module "cluster" {
   resource_group_location = module.spoke_network.spoke_rg_location
   resource_group_name     = module.spoke_network.spoke_rg_name
   resource_group_id       = module.spoke_network.spoke_rg_id
-  acr_id                  = module.acr.acr_id
+#  acr_id                  = module.acr.acr_id
   vnet_subnet_id          = module.spoke_network.cluster_nodes_subnet_id
   application_gateway_id  = module.spoke_network.application_gateway_id
   spoke_pip_id            = module.spoke_network.spoke_pip_id
@@ -51,6 +51,6 @@ module "cluster" {
   depends_on = [
     module.spoke_network,
     module.hub_network,
-    module.acr
+#    module.acr
   ]
 }

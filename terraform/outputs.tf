@@ -2,6 +2,10 @@ output "resource_group_name" {
   value = azurerm_resource_group.rg_ecommerce.name
 }
 
+output "resource_group_location" {
+  value = var.resource_group_location
+}
+
 output "kube_config" {
   value     = module.cluster.kube_config
   sensitive = true

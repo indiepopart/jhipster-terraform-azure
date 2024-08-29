@@ -10,5 +10,4 @@ spec:
     app: store
   ports:
     - name: http
-      targetPort: 8080
-      port: 80
+      port: 8080

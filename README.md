@@ -82,10 +82,10 @@ terraform apply main.tfplan
 The complete provisioning of all resources will take while. Once the AKS cluster is ready, you will see the output variables printed on the console. Get the cluter credentials with the following command:
 
 ```bash
-az aks get-credentials --resource-group rg-spokes-westus2 --name <kubernetes_cluster_name> --admin
+az aks get-credentials --resource-group rg-spokes-<resource_group_location> --name <kubernetes_cluster_name> --admin
 ```
 
-You should see the cluster details if you run `kdash` or `kubectl get nodes` commands.
+Then check the cluster details with [`kdash`](https://github.com/kdash-rs/kdash) or `kubectl get nodes`.
 
 ## Set up OIDC authentication using Auth0
 
@@ -93,9 +93,9 @@ First get the client ID and secret for the Auth0 application created by Terrafor
 
 ```bash
 # Client ID
-terraform output --json | jq -r '.auth0_webapp_client_id.value'
+terraform output auth0_webapp_client_id
 # Client Secret
-terraform output --json | jq -r '.auth0_webapp_client_secret.value'
+terraform output auth0_webapp_client_secret
 ```
 
 Update `kubernetes/registry-k8s/application-configmap.yml` with the OIDC configuration from above.
@@ -151,15 +151,21 @@ cd kubernetes
 
 Once the deployments are done, we must wait for the pods to be in **RUNNING** status.
 
-As the Azure Application Gateway requires the inbound traffic to be for the host `store.example.com`, you can test the store service by adding an entry in your _hosts_ file that maps to the gateway public IP:
+As the Azure Application Gateway requires the inbound traffic to be for the host `store.example.com`, you can test the store service by adding an entry in your _/etc/hosts_ file that maps to the gateway public IP. Get the public IP of the Azure Application Gateway with:
 
 ```shell
 terraform output spoke_pip
 ```
 
-Then navigate to `http://store.example.com` and sign in at Atuh0 with the test user/password jhipster@test.com/passpass$12$12.
+Edit the _/etc/hosts_ file and add the following line:
 
-### Cleanup
+```
+<spoke_pip> store.example.com
+```
+
+Then navigate to `http://store.example.com` and sign in at Auth0 with the test user/password `jhipster@test.com/passpass$12$12`.
+
+### Tear down the cluster with Terraform
 
 Once you are done with the tutorial, you can delete the cluster and all the resources created using Terraform by running the following commands:
 

@@ -6,12 +6,12 @@ metadata:
 spec:
   ingressClassName: azure-application-gateway
   rules:
-  - http:
-      paths:
-      - path: /
-        backend:
-          service:
-            name: store
-            port:
-              number: 80
-        pathType: Exact
+    - http:
+        paths:
+          - path: /
+            backend:
+              service:
+                name: store
+                port:
+                  number: 8080
+            pathType: Exact
